@@ -3,8 +3,8 @@ import useFetch from '@hooks/useFetch';
 import { Chart } from '@common/Chart';
 
 // Agregar paginacion con tailwind
-const PRODUCT_LIMIT = 30;
-const PRODUCT_OFFSET = 30;
+const PRODUCT_LIMIT = 0;
+const PRODUCT_OFFSET = 50;
 
 export default function Dashboard() {
   const products = useFetch(endPoints.products.getProducts(PRODUCT_LIMIT, PRODUCT_OFFSET));

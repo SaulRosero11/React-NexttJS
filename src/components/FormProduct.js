@@ -1,6 +1,7 @@
 import { useRef } from 'react';
+import { addProduct } from '@services/api/products';
 
-export default function FormProduct() {
+export default function FormProduct({ setOpen, setAlert }) {
   const formRef = useRef(null);
 
   const handleSubmit = (event) => {
@@ -13,7 +14,24 @@ export default function FormProduct() {
       categoryId: parseInt(formData.get('category')),
       images: [formData.get('images').name],
     };
-    console.log(data);
+    addProduct(data)
+      .then(() => {
+        setAlert({
+          active: true,
+          message: 'Product added successfully',
+          type: 'success',
+          autoClose: false,
+        });
+        setOpen(false);
+      })
+      .catch((error) => {
+        setAlert({
+          active: true,
+          message: error.message,
+          type: 'error',
+          autoClose: false,
+        });
+      });
   };
 
   return (
@@ -43,11 +61,11 @@ export default function FormProduct() {
                 autoComplete="category-name"
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
-                <option value="1">Clothes</option>
-                <option value="2">Electronics</option>
-                <option value="3">Furniture</option>
-                <option value="4">Toys</option>
-                <option value="5">Others</option>
+                <option value="6">Clothes</option>
+                <option value="7">Electronics</option>
+                <option value="8">Furniture</option>
+                <option value="10">Toys</option>
+                <option value="6">Others</option>
               </select>
             </div>
 
